@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>New York Attractions</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+   <!-- Create a place to put the map and the list in the HTML-->
+	<div class="container">
+		<div class="options-box">
+        	<h1>New York Attractions</h1>
+        <div>
+          <input id="inputTextID" type="text" value="" placeholder="Enter your favorite area">
+          <input type="button" value="Filter" id="filterID">
+        </div>
+        </div>
+      		<div id="map"></div>
+    	</div>
+		</div>
+    </div>
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+    <!-- defining Google Map API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=initMap"
+    async defer>
+    </script>
+
+</body>   
+</html>

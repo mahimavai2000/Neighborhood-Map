@@ -71,7 +71,7 @@ var map,marker,infoWindow;
 //Create Knockout ViewModel to list out the locations
 function ViewModel() {
   var self=this;
-  
+  this.searchOption = ko.observable("");
   this.markers=[];
 
   //create KO observable array to hold locations array data
@@ -80,6 +80,7 @@ function ViewModel() {
   //Add locations details into KO observable array
   locations.forEach(function(locationDetails){
     self.locationList.push( new Location(locationDetails));
+    
   });
 
 //Initiate the Map
@@ -95,9 +96,9 @@ this.initMap = function() {
     //create InfoWindow instance
     this.largeInfoWindow= new google.maps.InfoWindow();
 
-     //create marker color change
-    this.markerDefaultIcon=this.makeMarkerIcon('0091ff');
-    this.highlightedIcon=this.makeMarkerIcon('FFFF24');   
+    
+    //this.markerDefaultIcon=this.makeMarkerIcon('0091ff');
+    //this.highlightedIcon=this.makeMarkerIcon('FFFF24');   
 
     //Create an Array to get all locations
     for(var i = 0;i < locations.length; i++) {
@@ -114,6 +115,9 @@ this.initMap = function() {
           });
         // Push the marker to our array of markers.
         this.markers.push(this.marker);
+        // Add marker to location
+        this.locationList()[i].marker = this.marker;
+
 
         //create LatLng bounds instance
         this.bounds = new google.maps.LatLngBounds();
@@ -136,11 +140,14 @@ this.initMap = function() {
     }
     
 };
+ //create marker color change
+ //Marker icon change on mouseover
 this.setmarkerHighlightedIcon= function() {
-  self.setIcon(this.highlightedIcon);
+  this.setIcon(self.makeMarkerIcon('FFFF24'));
 }
+//Marker icon change on mouseover
 this.setmarkerDefaultIcon= function() {
-  self.setIcon(this.markerDefaultIcon);
+  this.setIcon(self.makeMarkerIcon('0091ff'));
 }
 //Function to set color for Marker icon
 this.makeMarkerIcon= function(markerColor) {
@@ -153,16 +160,26 @@ this.makeMarkerIcon= function(markerColor) {
         new google.maps.Size(21,34));
         return this.markerImage;
 };
+//show marker when click from List
+this.showMarker = function(location) {
+    google.maps.event.trigger(location.marker, 'click');
+}
+
+
 //Populate marker
 this.populateMarker = function() {
         self.populateInfoWindow(this, self.largeInfoWindow);
+        this.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout((function() {
+            this.setAnimation(null);
+        }).bind(this), 1400);
       };
 //Populate InfoWindow with title and Panorma image
 this.populateInfoWindow=function(marker,infoWindow) {
 
     // Check to make sure the infowindow is not already opened on this marker.
     if (infoWindow.marker != marker) {
-      //infowindow.setContent('');
+      infoWindow.setContent('');
       infoWindow.marker = marker;            
 
     // Make sure the marker property is cleared if the infowindow is closed.
@@ -207,6 +224,37 @@ this.populateInfoWindow=function(marker,infoWindow) {
 
 this.initMap();
 
+    // It also serves to make the filter work
+    this.markersFilter = ko.computed(function() {
+        var result = [];
+        for (var i = 0; i < this.markers.length; i++) {
+            var markerLocation = this.markers[i];
+            if (markerLocation.title.toLowerCase().includes(this.searchOption()
+                    .toLowerCase())) {
+                result.push(markerLocation);
+                this.markers[i].setVisible(true);
+            } else {
+                this.markers[i].setVisible(false);
+            }
+        }
+        return result;
+    }, this);
+
+// It also serves to make the filter work
+    this.ListFilter = ko.computed(function() {
+        var locationResult = [];
+        for (var i = 0; i < this.locationList.length; i++) {
+            var listLocation = this.locationList[i];
+            if (listLocation.title.toLowerCase().includes(this.searchOption()
+                    .toLowerCase())) {
+                result.push(listLocation);
+                this.locationList[i].setVisible(true);
+            } else {
+                this.locationList[i].setVisible(false);
+            }
+        }
+        return locationResult;
+    }, this);
 }
 
 

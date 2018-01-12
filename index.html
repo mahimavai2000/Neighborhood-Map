@@ -11,12 +11,11 @@
 		<div class="options-box">
         	<h1>New York Attractions</h1>
         <div>
-          <input id="inputTextID" type="text" value="" placeholder="Enter your favorite area">
-          <input type="button" value="Filter" id="filterID">
+          <input id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
         </div>
         <div>
           <ul data-bind="foreach: locationList">
-            <li data-bind="text: title, click:$parent.populateMarker"></li>
+            <a href="#"><li data-bind="text: title, click:$parent.showMarker"></li>
           </ul>
         </div>
     </div>

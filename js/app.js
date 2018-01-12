@@ -58,7 +58,7 @@ var map,marker,infoWindow;
 function ViewModel() {
   var self=this;
   
-  var markers=[];
+  this.markers=[];
 
   //create KO observable array to hold locations array data
   this.locationList= ko.observableArray([]);
@@ -69,21 +69,21 @@ function ViewModel() {
   });
 
 //Initiate the Map
-this.initMap=function (){
+this.initMap = function() {
   //constructor to create a new map JS object.
         var mapCanvas = document.getElementById('map');
         var mapOptions= {
           center: new google.maps.LatLng(40.712775, -74.005973),
-          zoom: 15,
+          zoom: 15
           //styles: styles        
        };
   map = new google.maps.Map(mapCanvas, mapOptions);
     //create InfoWindow instance
     this.largeInfoWindow= new google.maps.InfoWindow();
 
-    //create marker color change
-    this.markerDefaultIcon=makeMarkerIcon('0091ff');
-    this.highlightedIcon=makeMarkerIcon('FFFF24');
+     //create marker color change
+    this.markerDefaultIcon=self.makeMarkerIcon('0091ff');
+    this.highlightedIcon=self.makeMarkerIcon('FFFF24');   
 
     //Create an Array to get all locations
     for(var i = 0;i < locations.length; i++) {
@@ -92,47 +92,48 @@ this.initMap=function (){
         this.title = locations[i].title;
         // Create a marker per location, and put into markers array.
         this.marker = new google.maps.Marker({
-            position: position,
-            title: title,
+            position: this.position,
+            title: this.title,
             animation: google.maps.Animation.DROP,
-            icon: markerDefaultIcon,
+            //icon: markerDefaultIcon,
             id: i
           });
         // Push the marker to our array of markers.
-        this.markers.push(marker);
+        this.markers.push(this.marker);
 
         //create LatLng bounds instance
         this.bounds = new google.maps.LatLngBounds();
 
         // Extend the boundaries of the map for each marker and display the marker
-        for (var j = 0; j <markers.length; j++) {
+        for (var j = 0; j <this.markers.length; j++) {
           this.markers[j].setMap(map);
-          bounds.extend(markers[j].position);
-          map.fitBounds(bounds);
+          this.bounds.extend(this.markers[j].position);
+          map.fitBounds(this.bounds);
         }
 
         // Create an onclick event to open an infowindow at each marker.
         this.marker.addListener('click', function() {
-            populateInfoWindow(this, largeInfoWindow);
+            self.populateInfoWindow(this, this.largeInfoWindow);
           });
 
         //Create a listener for marker on mouseover highlighted icon.
         this.marker.addListener('mouseover', function(){
-            self.setIcon(highlightedIcon);
+            self.setIcon(this.highlightedIcon);
           });
 
         //Create a listener for marker on mouseout default icon.
         this.marker.addListener('mouseout', function(){
-            self.setIcon(markerDefaultIcon);
+            self.setIcon(this.markerDefaultIcon);
           });
     }
-}
-
+};
+this.initMap();
 //Populate InfoWindow with title and Panorma image
 this.populateInfoWindow=function(marker,infoWindow) {
 
     // Check to make sure the infowindow is not already opened on this marker.
     if (infoWindow.marker != marker) {
+      //infowindow.setContent('');
       infoWindow.marker = marker;            
 
     // Make sure the marker property is cleared if the infowindow is closed.
@@ -184,17 +185,15 @@ this.makeMarkerIcon=function(markerColor) {
         new google.maps.Point(0, 0),
         new google.maps.Point(10, 34),
         new google.maps.Size(21,34));
-        return markerImage;
+        return this.markerImage;
 };
-
-this.initMap();
-
 }
 
 //Create Location function to hold location details
 var Location= function(data){
   this.title=ko.observable(data.title);
   this.img=ko.observable(data.img);
+};
+function startApp() {
+    ko.applyBindings(new ViewModel());
 }
-
-ko.applyBindings(new ViewModel());

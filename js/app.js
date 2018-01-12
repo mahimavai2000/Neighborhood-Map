@@ -2,56 +2,70 @@
 var locations= [
 {
 	title: 'Statue of Liberty',
-	img: '',
+	img: 'img/LibertyStatue.jpg',
+  note: 'Iconic National Monument opened in 1886, offering guided tours, a museum & city views.',
 	location: {lat:40.689247, lng: -74.044502}	
 },
 {
 	title: 'Empire State Buildeing',
-	img: '',
+	img: 'img/ESB.jpg',
+  note: 'Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors.',
 	location: {lat:	40.748563, lng: -73.985746}
 },
 {
 	title: 'Central Park',
-	img: '',
+	img: 'img/CentralPark.jpg',
+  note: 'Sprawling park with pedestrian paths & ballfields, plus a zoo, carousel, boat rentals & a reservoir.',
 	location: {lat:40.785091, lng: -73.968285}
 },
 {
 	title: 'Brooklyn Bridge',
-	img: '',
+	img: 'img/BrooklynBridge.jpg',
+  note: 'Beloved, circa-1883 landmark connecting Manhattan & Brooklyn via a unique stone-&-steel design.',
 	location: {lat:40.706086, lng: -73.996864}
 },
 {
 	title: 'Times Square',
-	img: '',
+	img: 'img/TimeSquare.jpg',
+  note: 'Bustling destination in the heart of the Theater District known for bright lights, shopping & shows.',
 	location: {lat:40.760262, lng: -73.993287}	
 },
 {
 	title: 'One World Trade Center',
-	img: '',
+	img: 'img/Oneworld.jpg',
+  note: 'A casual cafe, a bar with small plates & American fine dining with views from the 101st floor.',
 	location: {lat:40.713008, lng: -74.013169}
 },
 {
 	title: 'Rockefeller Center',
-	img: '',
+	img: 'img/RF.jpg',
+  note: 'Famous complex thats home to TV studios, plus a seasonal ice rink & giant Christmas tree.',
 	location: {lat:40.758740, lng: -73.978674}
 },
 {
 	title: 'American Museum of Natural History',
-	img: '',
+	img: 'img/NaturalHistory.jpg',
+  note: 'From dinosaurs to outer space and everything in between, this huge museum showcases natural wonders.',
 	location: {lat:40.782045, lng: -73.971711}
 },
 {
 	title: 'Grand Central Terminal',
-	img: '',
+	img: 'img/GrandCentral.jpg',
+  note: 'Iconic train station known for its grand facade & main concourse, also offering shops & dining.',
 	location: {lat:40.752570, lng: -73.977627}
 },
 {
 	title: 'Brooklyn Botanic Garden',
-	img: '',
+	img: 'img/BotanicGarden.jpg',
+  note: 'A kid-friendly annual Cherry Blossom Festival, a Japanese garden & more, spread across 52 acres.',
 	location: {lat:40.667622, lng: -73.963191}
 }
 ];
-
+//Create Location function to hold location details
+var Location= function(data){
+  this.title=ko.observable(data.title);
+  this.img=ko.observable(data.img);
+};
 var map,marker,infoWindow;
 //Knockout View Model
 //Create Knockout ViewModel to list out the locations
@@ -82,8 +96,8 @@ this.initMap = function() {
     this.largeInfoWindow= new google.maps.InfoWindow();
 
      //create marker color change
-    this.markerDefaultIcon=self.makeMarkerIcon('0091ff');
-    this.highlightedIcon=self.makeMarkerIcon('FFFF24');   
+    this.markerDefaultIcon=this.makeMarkerIcon('0091ff');
+    this.highlightedIcon=this.makeMarkerIcon('FFFF24');   
 
     //Create an Array to get all locations
     for(var i = 0;i < locations.length; i++) {
@@ -95,7 +109,7 @@ this.initMap = function() {
             position: this.position,
             title: this.title,
             animation: google.maps.Animation.DROP,
-            //icon: markerDefaultIcon,
+            icon: this.markerDefaultIcon,
             id: i
           });
         // Push the marker to our array of markers.
@@ -112,22 +126,37 @@ this.initMap = function() {
         }
 
         // Create an onclick event to open an infowindow at each marker.
-        this.marker.addListener('click', function() {
-            self.populateInfoWindow(this, this.largeInfoWindow);
-          });
+        this.marker.addListener('click', self.populateMarker);
 
         //Create a listener for marker on mouseover highlighted icon.
-        this.marker.addListener('mouseover', function(){
-            self.setIcon(this.highlightedIcon);
-          });
+        this.marker.addListener('mouseover', self.setmarkerHighlightedIcon);
 
         //Create a listener for marker on mouseout default icon.
-        this.marker.addListener('mouseout', function(){
-            self.setIcon(this.markerDefaultIcon);
-          });
+        this.marker.addListener('mouseout', self.setmarkerDefaultIcon);
     }
+    
 };
-this.initMap();
+this.setmarkerHighlightedIcon= function() {
+  self.setIcon(this.highlightedIcon);
+}
+this.setmarkerDefaultIcon= function() {
+  self.setIcon(this.markerDefaultIcon);
+}
+//Function to set color for Marker icon
+this.makeMarkerIcon= function(markerColor) {
+    this.markerImage = new google.maps.MarkerImage(
+        'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|'+ markerColor +
+        '|40|_|%E2%80%A2',
+        new google.maps.Size(34, 34),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(10, 34),
+        new google.maps.Size(21,34));
+        return this.markerImage;
+};
+//Populate marker
+this.populateMarker = function() {
+        self.populateInfoWindow(this, self.largeInfoWindow);
+      };
 //Populate InfoWindow with title and Panorma image
 this.populateInfoWindow=function(marker,infoWindow) {
 
@@ -138,7 +167,7 @@ this.populateInfoWindow=function(marker,infoWindow) {
 
     // Make sure the marker property is cleared if the infowindow is closed.
         infoWindow.addListener('closeclick',function(){
-        infoWindow.setMarker = null;
+        infoWindow.marker = null;
         });
 
         //Create Streetview service instance
@@ -176,24 +205,11 @@ this.populateInfoWindow=function(marker,infoWindow) {
     }
 }
 
-//Function to set color for Marker icon
-this.makeMarkerIcon=function(markerColor) {
-    this.markerImage = new google.maps.MarkerImage(
-        'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|'+ markerColor +
-        '|40|_|%E2%80%A2',
-        new google.maps.Size(34, 34),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(10, 34),
-        new google.maps.Size(21,34));
-        return this.markerImage;
-};
+this.initMap();
+
 }
 
-//Create Location function to hold location details
-var Location= function(data){
-  this.title=ko.observable(data.title);
-  this.img=ko.observable(data.img);
-};
+
 function startApp() {
     ko.applyBindings(new ViewModel());
 }

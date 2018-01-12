@@ -14,17 +14,21 @@
           <input id="inputTextID" type="text" value="" placeholder="Enter your favorite area">
           <input type="button" value="Filter" id="filterID">
         </div>
+        <div>
+          <ul data-bind="foreach: locationList">
+            <li data-bind="text: title, click:$parent.populateMarker"></li>
+          </ul>
         </div>
-      		<div id="map"></div>
-    	</div>
-		</div>
     </div>
-    <script src="js/lib/knockout-3.2.0.js"></script>
-    <script src="js/app.js"></script>
-    <!-- defining Google Map API key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=initMap"
+      		<div id="map"></div>
+  </div>		
+
+<!-- defining Google Map API key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp"
     async defer>
-    </script>
+</script>
+<script src="js/lib/knockout-3.4.2.js"></script>
+<script src="js/app.js"></script>
 
 </body>   
 </html>

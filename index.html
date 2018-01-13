@@ -14,7 +14,7 @@
           <input id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
         </div>
         <div>
-          <ul data-bind="foreach: locationList">
+          <ul data-bind="foreach: ListFilter">
             <a href="#"><li data-bind="text: title, click:$parent.showMarker"></li>
           </ul>
         </div>
@@ -26,6 +26,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp"
     async defer>
 </script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="js/lib/knockout-3.4.2.js"></script>
 <script src="js/app.js"></script>
 

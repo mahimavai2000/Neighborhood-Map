@@ -7,7 +7,7 @@ var locations= [
 	location: {lat:40.689247, lng: -74.044502}	
 },
 {
-	title: 'Empire State Buildeing',
+	title: 'Empire State Building',
 	img: 'img/ESB.jpg',
   note: 'Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors.',
 	location: {lat:	40.748563, lng: -73.985746}
@@ -72,6 +72,7 @@ var map,marker,infoWindow;
 function ViewModel() {
   var self=this;
   this.searchOption = ko.observable("");
+  this.searchListOption = ko.observable("");
   this.markers=[];
 
   //create KO observable array to hold locations array data
@@ -80,7 +81,6 @@ function ViewModel() {
   //Add locations details into KO observable array
   locations.forEach(function(locationDetails){
     self.locationList.push( new Location(locationDetails));
-    
   });
 
 //Initiate the Map
@@ -176,6 +176,22 @@ this.populateMarker = function() {
       };
 //Populate InfoWindow with title and Panorma image
 this.populateInfoWindow=function(marker,infoWindow) {
+  //create wiki API
+  var articleUrl;
+  //Insert Location in wiki URL
+  var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  //Error message if Wikipedia is failed to load
+  var wikiTimeout = setTimeout(function () {
+        alert("Wikipedia is failed to Load");
+    }, 8000);
+  //Get response from Wiki API through Ajax
+    $.ajax({
+        url: wikiURL,
+        dataType: "json"
+    }).done(function(response) {
+        clearTimeout(wikiTimeout);
+        articleUrl = response[3][0];
+    });
 
     // Check to make sure the infowindow is not already opened on this marker.
     if (infoWindow.marker != marker) {
@@ -198,7 +214,8 @@ this.populateInfoWindow=function(marker,infoWindow) {
             if (status===google.maps.StreetViewStatus.OK) {
               var nearStreetViewLocation=data.location.latLng;
               var heading=google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, marker.position);
-              infoWindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+              infoWindow.setContent('<div>' + marker.title + '</div><div id="pano"></div><div><a href ="' + articleUrl + '">' + articleUrl + '</a><hr></div>');
+              
                 var panoramaOptions = {
                   position: nearStreetViewLocation,
                   pov: {
@@ -224,37 +241,33 @@ this.populateInfoWindow=function(marker,infoWindow) {
 
 this.initMap();
 
-    // It also serves to make the filter work
-    this.markersFilter = ko.computed(function() {
-        var result = [];
-        for (var i = 0; i < this.markers.length; i++) {
-            var markerLocation = this.markers[i];
-            if (markerLocation.title.toLowerCase().includes(this.searchOption()
-                    .toLowerCase())) {
-                result.push(markerLocation);
-                this.markers[i].setVisible(true);
-            } else {
-                this.markers[i].setVisible(false);
-            }
-        }
-        return result;
-    }, this);
+
 
 // It also serves to make the filter work
     this.ListFilter = ko.computed(function() {
+      
         var locationResult = [];
-        for (var i = 0; i < this.locationList.length; i++) {
-            var listLocation = this.locationList[i];
-            if (listLocation.title.toLowerCase().includes(this.searchOption()
+        // Iterate over all the locations in the current location list
+        for (var j = 0; j < this.locationList().length; j++) {
+          console.log(this.locationList().length);
+            var listLocation = this.locationList()[j];
+            // Check if the location title matches our search query
+            if (listLocation.title().toLowerCase().includes(this.searchOption()
                     .toLowerCase())) {
-                result.push(listLocation);
-                this.locationList[i].setVisible(true);
+              // if so, push to our location result array
+                locationResult.push(listLocation);
+                // set the marker to visible
+                this.locationList()[j].marker.setVisible(true);
             } else {
-                this.locationList[i].setVisible(false);
+              // otherwise, hide the marker
+                this.locationList()[j].marker.setVisible(false);
             }
         }
+        // return the new array of locations
         return locationResult;
     }, this);
+
+
 }
 
 

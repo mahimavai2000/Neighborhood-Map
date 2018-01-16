@@ -214,7 +214,7 @@ this.populateInfoWindow=function(marker,infoWindow) {
             if (status===google.maps.StreetViewStatus.OK) {
               var nearStreetViewLocation=data.location.latLng;
               var heading=google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, marker.position);
-              infoWindow.setContent('<div>' + marker.title + '</div><div id="pano"></div><div><a href ="' + articleUrl + '">' + articleUrl + '</a><hr></div>');
+              infoWindow.setContent('<div>' + marker.title + '</div><div id="pano"></div><div><a target="_blank" href ="' + articleUrl + '">' + articleUrl + '</a><hr></div>');
               
                 var panoramaOptions = {
                   position: nearStreetViewLocation,
@@ -238,8 +238,6 @@ this.populateInfoWindow=function(marker,infoWindow) {
         infoWindow.open(map, marker);
     }
     });
-
-
 }
 
 this.initMap();
@@ -252,7 +250,7 @@ this.initMap();
         var locationResult = [];
         // Iterate over all the locations in the current location list
         for (var j = 0; j < this.locationList().length; j++) {
-          console.log(this.locationList().length);
+          
             var listLocation = this.locationList()[j];
             // Check if the location title matches our search query
             if (listLocation.title().toLowerCase().includes(this.searchOption()

@@ -7,28 +7,40 @@
 </head>
 <body>
    <!-- Create a place to put the map and the list in the HTML-->
+
 	<div class="container">
-		<div class="options-box">
-        	<h1>New York Attractions</h1>
+		<div class="listPane">
+        	<h1>New York City</h1>
         <div>
-          <input id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
+          <input align="middle" id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
         </div>
-        <div>
-          <ul data-bind="foreach: ListFilter">
-            <a href="#"><li data-bind="text: title, click:$parent.showMarker"></li>
+        <div class="leftPane">
+          <ul data-bind="foreach: ListFilter">            
+            
+              <li class="liStyles">
+                <div class="liSpace">
+                  <div class="liLeftcontent">
+                    <div class="liFlex liFont" data-bind="text: title, click:$parent.showMarker"></div>
+                    <!--<p class="_DAm">American icon in New York Harbor</p>-->
+                    <p class="pStyles" data-bind="click:$parent.showMarker"></p>
+                  </div>
+                  <img class="imageStyles" data-bind="click: $parent.showMarker, attr: {src:img}" src="" alt="No Image available">
+                </div>
+              </li>
           </ul>
         </div>
     </div>
-      		<div id="map"></div>
+      		<div id="map" class="mapClass"></div>
   </div>		
-
-<!-- defining Google Map API key -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp"
-    async defer>
-</script>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="js/lib/knockout-3.4.2.js"></script>
 <script src="js/app.js"></script>
+<!-- defining Google Map API key -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp"
+    async defer>
+</script>
+
 
 </body>   
 </html>

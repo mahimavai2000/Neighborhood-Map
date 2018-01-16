@@ -179,24 +179,24 @@ this.populateInfoWindow=function(marker,infoWindow) {
   //create wiki API
   var articleUrl;
   //Insert Location in wiki URL
-  var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&limit=1&namespace=0&origin=*&format=json&callback=?';
   //Error message if Wikipedia is failed to load
   var wikiTimeout = setTimeout(function () {
         alert("Wikipedia is failed to Load");
     }, 8000);
   //Get response from Wiki API through Ajax
-    $.ajax({
+   $.ajax({
         url: wikiURL,
-        dataType: "json"
+        dataType: "jsonp"
     }).done(function(response) {
         clearTimeout(wikiTimeout);
         articleUrl = response[3][0];
-    });
 
-    // Check to make sure the infowindow is not already opened on this marker.
+        // Check to make sure the infowindow is not already opened on this marker.
     if (infoWindow.marker != marker) {
       infoWindow.setContent('');
-      infoWindow.marker = marker;            
+      infoWindow.marker = marker; 
+                
 
     // Make sure the marker property is cleared if the infowindow is closed.
         infoWindow.addListener('closeclick',function(){
@@ -237,6 +237,9 @@ this.populateInfoWindow=function(marker,infoWindow) {
         //Open the infoWindow
         infoWindow.open(map, marker);
     }
+    });
+
+
 }
 
 this.initMap();

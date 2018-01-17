@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-8">
               <div class="row">             
-                  <div class="col-md-12 mapArea" id="map"></div>
+                  <div class="col-sm-12 mapArea" id="map"></div>
               </div>               
             </div>
          </div>
@@ -52,7 +52,7 @@
     <script src="js/lib/knockout-3.4.2.js"></script>
     <script src="js/app.js"></script>
     <!-- defining Google Map API key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp" async defer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp" onerror="mapError()" async defer>
     </script>
    </body>
 </html>

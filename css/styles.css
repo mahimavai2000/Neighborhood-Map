@@ -4,12 +4,13 @@ html,body {
      margin: 0;
      padding: 0;
 }
- .container {
+ /*.container {
      height: 100%;
+     width: 100%;
      position: relative;
      align-items: stretch;
      display: flex;
-     min-height: 0 flex: 1 1 0px;
+     min-height: 0 flex: 1 1 0px;*/
 }
  input {
      font-size: 15px;
@@ -48,6 +49,7 @@ html,body {
      /*background-color: #fff;*/
      position: relative;
      overflow: auto;
+     height: 100vh;
 }
  .leftPane {
      cursor: pointer;
@@ -59,7 +61,7 @@ html,body {
      outline-offset: -1px;
 }
  .listSpace{
-     padding: 20px 20px 20px 20px;
+     padding: 20px;
 }
  .listFlex {
      display: flex;

@@ -3,28 +3,22 @@ html,body {
      height: 100%;
      margin: 0;
      padding: 0;
-     
 }
  .container {
      height: 100%;
      position: relative;
      align-items: stretch;
      display: flex;
-     min-height: 0
-     flex: 1 1 0px;
+     min-height: 0 flex: 1 1 0px;
 }
-
  input {
-     
      font-size: 15px;
-     
 }
-#inputTextID {
-     padding-left: 20px;   
-
+ #inputTextID {
+     padding-left: 20px;
 }
  h1 {
-     color: #4542f4;
+     color: #F8F8FF;
      font-size: 30px;
      font-weight: bold;
      word-wrap: break-word;
@@ -32,54 +26,62 @@ html,body {
      line-height: 1.2;
      margin: 0 0 10px 0;
      text-align: center;
-     padding-top: 10px;
+     padding: 10px 10px;
+     background-color: #65a0ed;
 }
-ul, li {
+ ul, li {
      display: block;
      list-style-type: decimal;
      border: 0;
      margin: 0;
      padding: 0;
 }
-li {
+ li {
      list-style: none;
      display: list-item;
      text-align: -weblit-match-parent;
 }
-.leftPane {
+ li:hover {
+     background-color: #e8e8e8;
+}
+.listPane {
+     background-color: #fff;
+     position: relative;
+     width: 30%;
+     overflow: auto;
+}
+ .leftPane {
      cursor: pointer;
 }
-.liStyles{
+ .listStyles{
      border-bottom: 1px solid;
      border-bottom-color: #dcdfe5;
      outline: none;
      outline-offset: -1px;
 }
-.liSpace{
+ .listSpace{
      padding: 40px 20px 20px 24px;
-     
 }
-.liFlex {
+ .listFlex {
      display: flex;
 }
-.liLeftcontent {
+ .listLeftcontent {
      display: inline-block;
      margin-right: 36px;
      vertical-align: top;
      width: 240px;
      flex: 1 0 0px;
 }
-.liFont {
+ .listFont {
      align-self: center;
      font-size: 18px;
      font-weight: 400;
      line-height: 22px;
      margin: 0;
      color: #4259f4;
-
 }
-p {
-     font-size: 13px;
+ p {
+     font-size: 14px;
      margin: 0;
      display: block;
      margin-start: 0;
@@ -87,111 +89,127 @@ p {
      margin-before: 1em;
      margin-after: 1em;
      padding-top: 10px;
+     width: 100%;
 }
-.pStyles {
+ .pStyles {
      line-height: 20px;
-     /*max-width: 80px;*/
+    /*max-width: 80px;
+    */
      overflow: hidden;
 }
-.imageStyles {
+ .imageStyles {
      background: no-repeat center/cover;
      vertical-align: middle;
      min-height: 0;
      min-width: 0;
 }
-
-.listFont {
-     font: 13px Roboto, HelveticaNeue, Arial, sans-serif;
-     overflow-x: auto;
-     position: relative
-}
- /*#map {
+#map {
      bottom:0px;
      height: 100%;
      left: 362px;
      position: absolute;
      right: 0px;
-
-}*/
-.mapClass {
-
-    flex: 1 0;
-    overflow: hidden;
-    z-index: 0
-}
-.listPane {
-    background-color: #fff;
-    /*box-shadow: 2px 0 2px 0 rgba(0, 0, 0, .12), 0 0 2px 0 rgba(0, 0, 0, .12);*/
-    position: relative;
-    width: 500px;
-    /*z-index: 1;*/
-    overflow: auto;
-
 }
 
- /*.options-box {
-     background: #fff;
-     border: 1px solid #999;
-     border-radius: 3px;
+ /*.rightPane {
+     position: absolute;
      height: 100%;
-     line-height: 35px;
-     padding: 10px 10px 30px 10px;
-     text-align: left;
-     width: 340px;
+     width: 50%;
+     margin: 0;
 }*/
+ .mapArea {
+     flex: 1 0;
+     overflow: hidden;
+     height:100%;
+     width:100%;
+}
+ .map-responsive{
+     overflow:hidden;
+     padding-bottom:25%;
+     position:relative;
+     height:0;
+}
+ .map-responsive iframe{
+     left:0;
+     top:0;
+     height:100%;
+     width:100%;
+     position:absolute;
+} 
  #pano {
      width: 200px;
      height: 200px;
 }
-@media screen and (max-width: 670px) {
-     .forecast h3 {
-          display: none;
-     }
-
-     .forecast li {
-          margin: 0 1px;
-     }    
+/*@media screen and (max-width: 300px) {
+     .listPane h1 {
+         display: none;
+    }
+     .listPane {
+         width: 0;
+    }
+     li, input {
+         display: none;
+    }
+     .imageStyles {
+         display: none;
+    }
+     .mapClass {
+         width: 50%;
+    }
 }
-
-@media screen and (max-width: 600px) {
-     .flickr-image-container img {
-         position: relative;
-         display: block;
-         margin: auto;
-         max-width: 325px;
-         overflow: hidden;
-         height: 195px;
-     }
-
-     .modal-images{
-         max-width: 325px;
-         min-width: 325px;
-         height: 260px;
-         margin: 30% auto;
-     }
+*/
+/* @media screen and (min-width: 0px) and (max-width: 600px){
+     .listPane h1 {
+         display: none;
+    }
+     .listPane {
+         width: 0;
+    }
+     li, input {
+         display: none;
+    }
+     .imageStyles {
+         display: none;
+    }
+     .mapClass {
+         width: 30%;
+    }
 }
-
-@media screen and (max-width: 700px) and (orientation:landscape) {
-     .flickr-image-container img {
-         position: relative;
-         display: block;
-         margin: auto;
-         max-width: 325px;
-         overflow: hidden;
-         height: 195px;
-     }
-
-     .modal-images{
-          max-width: 325px;
-         min-width: 325px;
-         height: 260px;
-          margin: 7% auto;
-     }
-
-     #search-container {
-          display: none;
-     }
+ @media screen and (max-width: 770px) {
+     h1 {
+         font-size: 3vmin;
+    }
+     .liFont {
+         font-size: 2vmin;
+    }
+     p {
+         display: none;
+    }
+     .imageStyles {
+         display: none;
+    }
+     .mapClass {
+         width: 50%;
+    }
 }
-
-
-
+ @media screen and (max-width: 830px) {
+     .imageStyles {
+         display: none;
+    }
+     p {
+         font-size: 2vmin;
+         width: 30%;
+    }
+     input {
+         font-size: 12px;
+         width: 80%;
+    }
+}
+ @media screen and (max-width: 930px) {
+     p {
+         width: 80%;
+    }
+     input {
+         font-size: 14px;
+    }
+}*/

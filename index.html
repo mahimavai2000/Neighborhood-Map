@@ -1,46 +1,58 @@
+<!DOCTYPE html>
 <html>
-<head>
-<title>New York Attractions</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<link href="css/styles.css" rel="stylesheet">
-</head>
-<body>
-   <!-- Create a place to put the map and the list in the HTML-->
-
-	<div class="container">
-		<div class="listPane">
-        	<h1>New York City</h1>
-        <div>
-          <input align="middle" id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
-        </div>
-        <div class="leftPane">
-          <ul data-bind="foreach: ListFilter">            
-            
-              <li class="liStyles">
-                <div class="liSpace">
-                  <div class="liLeftcontent">
-                    <div class="liFlex liFont" data-bind="text: title, click:$parent.showMarker"></div>
-                    <!--<p class="_DAm">American icon in New York Harbor</p>-->
-                    <p class="pStyles" data-bind="text: note, click:$parent.showMarker"></p>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>New York Attractions</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/styles.css">
+   </head>
+   <body>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-5">
+               <div class="row">
+                  <div class="col-md-12">
+                     <header class="">
+                        <h1>New York City</h1>                        
+                           <div class="form-group">                              
+                              <input align="middle" id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
+                           </div>                        
+                     </header>
                   </div>
-                  <img class="imageStyles" data-bind="click: $parent.showMarker, attr: {src:img}" src="" alt="No Image available">
+               </div>
+              <div class="row">
+                <div class="col-md-12 leftPane">
+                  <ul data-bind="foreach: ListFilter">
+                    <li class="class=listStyles">
+                      <div class="row listSpace">
+                        <div class="col-md-8 listLeftcontent">                      
+                          <div class="listFlex listFont" data-bind="text: title, click:$parent.showMarker"></div>
+                                <!--<p class="_DAm">American icon in New York Harbor</p>-->
+                          <p class="pStyles" data-bind="text: note, click:$parent.showMarker"></p>
+                        </div>
+                        <div class="col-md-4"> 
+                          <img class="imageStyles" data-bind="click: $parent.showMarker, attr: {src:img}" src="" alt="No Image available">
+                        </div>
+                      </div>  
+                    </li>
+                  </ul>
                 </div>
-              </li>
-          </ul>
-        </div>
-    </div>
-      		<div id="map" class="mapClass"></div>
-  </div>		
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="js/lib/knockout-3.4.2.js"></script>
-<script src="js/app.js"></script>
-<!-- defining Google Map API key -->
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp"
-    async defer>
-</script>
-
-
-</body>   
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="row">             
+                  <div class="col-md-12" id="map"></div>
+              </div>               
+            </div>
+         </div>
+      </div>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="js/lib/knockout-3.4.2.js"></script>
+    <script src="js/app.js"></script>
+    <!-- defining Google Map API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp" async defer>
+    </script>
+   </body>
 </html>

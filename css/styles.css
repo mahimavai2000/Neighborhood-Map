@@ -45,9 +45,8 @@ html,body {
      background-color: #e8e8e8;
 }
 .listPane {
-     background-color: #fff;
+     /*background-color: #fff;*/
      position: relative;
-     width: 30%;
      overflow: auto;
 }
  .leftPane {
@@ -60,7 +59,7 @@ html,body {
      outline-offset: -1px;
 }
  .listSpace{
-     padding: 40px 20px 20px 24px;
+     padding: 20px 20px 20px 20px;
 }
  .listFlex {
      display: flex;
@@ -69,7 +68,7 @@ html,body {
      display: inline-block;
      margin-right: 36px;
      vertical-align: top;
-     width: 240px;
+     width: 250px;
      flex: 1 0 0px;
 }
  .listFont {
@@ -103,13 +102,15 @@ html,body {
      min-height: 0;
      min-width: 0;
 }
-#map {
-     bottom:0px;
-     height: 100%;
-     left: 362px;
+/*#map {
+     bottom:0;
+     top:0;
+     height:100vh;
+     width:100%;
      position: absolute;
+     left: 362px;     
      right: 0px;
-}
+}*/
 
  /*.rightPane {
      position: absolute;
@@ -120,7 +121,7 @@ html,body {
  .mapArea {
      flex: 1 0;
      overflow: hidden;
-     height:100%;
+     height:100vh;
      width:100%;
 }
  .map-responsive{

@@ -15,9 +15,9 @@ Download the repository in your desktop, unzip it and open the "index.html" file
 
 # This project contains Neighborhood Map of New York City.
 
-1. This project displays 10 neighborhood locations of New York City with Google Map.
+1. This project displays 15 neighborhood locations of New York City with Google Map.
 
-2. A list-view of location names is provided which displays all 10 locations along with the respective image and small description  about the place by default.
+2. A list-view of location names is provided which displays all 15 locations along with the respective image and small description  about the place by default.
 
 3. By Clicking a location name,image or description on the list displays the Information window includes Place name,Panorama image and Wikipedia article URL about the location, and bounces associated map marker in the map.
 

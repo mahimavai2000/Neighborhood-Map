@@ -5,14 +5,6 @@ html,body {
      padding: 0;
 
 }
- /*.container {
-     height: 100%;
-     width: 100%;
-     position: relative;
-     align-items: stretch;
-     display: flex;
-     min-height: 0 flex: 1 1 0px;*/
-}
 
 /* Input search text styles */
 input {
@@ -44,8 +36,7 @@ ul, li {
 }
 li {
      list-style: none;
-     display: list-item;
-     text-align: -weblit-match-parent;
+     display: list-item;     
 }
 li:hover {
      background-color: #e8e8e8;
@@ -55,8 +46,8 @@ li:hover {
 .listPane {
      /*background-color: #fff;*/
      position: relative;
-     overflow-y: auto;    
-     height: 100vh;
+     overflow: auto;    
+     height: calc(100vh - 100px);
 }
 
 /* Cursor point to click the location name,image and description */
@@ -74,7 +65,7 @@ li:hover {
 
 /* Space around the Location name,description and image */
  .listSpace{
-     padding: 20px;
+     padding: 8.6px;
 }
 
 /* Display flexible space and font styles between Location name and description */
@@ -83,9 +74,9 @@ li:hover {
 }
 .listLeftcontent {
      display: inline-block;
-     margin-right: 36px;
+     /*margin-right: 36px;*/
      vertical-align: top;
-     width: 250px;
+     width: 241px;
      flex: 1 0 0px;
 }
 .listFont {
@@ -102,16 +93,11 @@ p {
      font-size: 14px;
      margin: 0;
      display: block;
-     margin-start: 0;
-     margin-end: 0;
-     margin-before: 1em;
-     margin-after: 1em;
      padding-top: 10px;
      width: 100%;
 }
 .pStyles {
      line-height: 20px;
-    /*max-width: 80px;*/
      overflow: hidden;
 }
 
@@ -129,47 +115,7 @@ p {
      top:0;
      height:100vh;
      width: 100%;
-     overflow-y: hidden;
-
-     
-     /*margin-top: -15px;
-     margin-bottom: -15px;
      overflow: hidden;
-     width:100%;
-     position: absolute;
-     left: 362px;     
-     right: 0px;*/
-}
-
- /*.rightPane {
-     position: absolute;
-     height: 100%;
-     width: 50%;
-     margin: 0;
-}*/
-
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
-}
- .mapArea {
-     flex: 1 0;
-     overflow: hidden;
-     height:100vh;
-     width:100%;
-}
- .map-responsive{
-     overflow:hidden;
-     padding-bottom:25%;
-     position:relative;
-     height:0;
-}
- .map-responsive iframe{
-     left:0;
-     top:0;
-     height:100%;
-     width:100%;
-     position:absolute;
 }
 
 /* Panorama styles in Map */ 
@@ -177,76 +123,3 @@ p {
      width: 200px;
      height: 200px;
 }
-/*@media screen and (max-width: 300px) {
-     .listPane h1 {
-         display: none;
-    }
-     .listPane {
-         width: 0;
-    }
-     li, input {
-         display: none;
-    }
-     .imageStyles {
-         display: none;
-    }
-     .mapClass {
-         width: 50%;
-    }
-}
-*/
-/* @media screen and (min-width: 0px) and (max-width: 600px){
-     .listPane h1 {
-         display: none;
-    }
-     .listPane {
-         width: 0;
-    }
-     li, input {
-         display: none;
-    }
-     .imageStyles {
-         display: none;
-    }
-     .mapClass {
-         width: 30%;
-    }
-}
- @media screen and (max-width: 770px) {
-     h1 {
-         font-size: 3vmin;
-    }
-     .liFont {
-         font-size: 2vmin;
-    }
-     p {
-         display: none;
-    }
-     .imageStyles {
-         display: none;
-    }
-     .mapClass {
-         width: 50%;
-    }
-}
- @media screen and (max-width: 830px) {
-     .imageStyles {
-         display: none;
-    }
-     p {
-         font-size: 2vmin;
-         width: 30%;
-    }
-     input {
-         font-size: 12px;
-         width: 80%;
-    }
-}
- @media screen and (max-width: 930px) {
-     p {
-         width: 80%;
-    }
-     input {
-         font-size: 14px;
-    }
-}*/

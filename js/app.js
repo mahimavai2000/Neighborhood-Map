@@ -71,7 +71,48 @@ var locations = [{
         lat: 40.752570,
         lng: -73.977627
     }
+},  {
+    title: 'The Battery',
+    img: 'img/Battery.jpg',
+    note: 'Historic park with Ellis Island & Statue of Liberty views & ferry service to both islands.',
+    location: {
+        lat: 40.703277,
+        lng: -74.017028
+    }
+},  {
+    title: 'Museum of Art',
+    img: 'img/Metro.jpg',
+    note: 'The Metropolitan Museum of Art of New York, colloquially "the Met," is the largest art museum in the United States.',
+    location: {
+        lat: 40.779437,
+        lng: -73.963244
+    }
 }, {
+    title: 'Washington Square Park',
+    img: 'img/WashingtonPark.jpg',
+    note: 'Washington Square Park is a 9.75-acre public park in New York City.',
+    location: {
+        lat: 40.730823,
+        lng: -73.997332
+    }
+}, {
+    title: 'High Line',
+    img: 'img/Highline.jpg',
+    note: 'The High Line is a 1.45-mile-long elevated linear park, greenway and rail trail on the west side of Manhattan in New York City.',
+    location: {
+        lat: 40.747993,
+        lng: -74.004765
+    }
+},
+{
+    title: 'Prospect Park',
+    img: 'img/Prospect.jpg',
+    note: 'Straightforward city park featuring basketball & handball courts, a playground & a historic home.',
+    location: {
+        lat: 40.660204,
+        lng: -73.968956
+    }
+},{
     title: 'Brooklyn Botanic Garden',
     img: 'img/BotanicGarden.jpg',
     note: 'A kid-friendly annual Cherry Blossom Festival, a Japanese garden & more, spread across 52 acres.',
@@ -259,11 +300,11 @@ function ViewModel() {
                         infoWindow.setContent('<div>' + marker.title + '</div>' +
                             '<div>No Street View Found</div>');
                     }
-                }
+                };
                 streetViewService.getPanoramaByLocation(marker.position, radius, this.getStreetView);
 
                 //Open the infoWindow
-                infoWindow.open(map, marker);
+                infoWindow.open(map, marker);                
             }
         });
     };
@@ -288,7 +329,7 @@ function ViewModel() {
                 this.locationList()[j].marker.setVisible(true);
             } else {
                 // otherwise, hide the marker
-                this.locationList()[j].marker.setVisible(false);
+                this.locationList()[j].marker.setVisible(false);                
             }
         }
 

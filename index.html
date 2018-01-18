@@ -15,14 +15,14 @@
    <body>
       <div class="container-fluid">
          <div class="row"> <!--Main Row  -->
-            <div class="col-md-4"> <!-- Divide 4 columns from the main row for List Locations  -->
-               <div class="row site-header"> <!-- Main Row-4 columns-1st Row for Header and input text for search location -->
+            <div class="col-md-3"> <!-- Divide 4 columns from the main row for List Locations  -->
+               <div class="row"> <!-- Main Row-4 columns-1st Row for Header and input text for search location -->
                   <div class="col-md-12">
                      <header>
                         <h1>New York City</h1>
                         <form>                        
                            <div class="form-group">                              
-                              <input align="middle" id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
+                              <input id="inputTextID" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
                            </div>
                         </form>                           
                      </header>
@@ -31,8 +31,8 @@
               <div class="row listPane"> <!-- Main Row-4 columns-2nd Row for list of locations -->
                 <div class="col-md-12 leftPane"> <!-- Main Row-4 columns-2nd Row-12 columns for list of locations -->
                   <ul data-bind="foreach: ListFilter"> <!-- Loop to List out all the locations from app.js -->
-                    <li class="class=listStyles">
-                      <div class="row listSpace"> <!-- Main Row-4 columns-2nd Row-12 columns-1row to divide text and image-->
+                    <li>
+                      <div class="row listSpace listStyles"> <!-- MainRow-4columns-2ndRow-12columns-1row to divide text and image-->
                         <div class="col-md-8 listLeftcontent"> <!-- MainRow-4col-2ndRow-12col-1row-8col for title and description-->
                           <div class="listFlex listFont" data-bind="text: title, click:$parent.showMarker"></div>                   
                           <p class="pStyles" data-bind="text: note, click:$parent.showMarker"></p>
@@ -46,8 +46,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-8"> <!-- MainRow-8col for Map-->
-              <div class="row site-header">             
+            <div class="col-md-9"> <!-- MainRow-8col for Map-->
+              <div class="row">             
                   <div class="col-md-12" id="map"></div>
               </div>               
             </div>
@@ -60,7 +60,7 @@
     <script src="js/app.js"></script>
 
     <!-- Define Google Map API key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5Hq0PYxbYA8VwksRU2PCG77vJMz3q9s&libraries=drawing,geometry&callback=startApp" onerror="mapError()" async defer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=MyAPI&libraries=drawing,geometry&callback=startApp" onerror="mapError()" async defer>
     </script>
    </body>
 </html>

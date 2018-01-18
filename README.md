@@ -5,11 +5,12 @@ Neighborhood Map
   **1.** Clone this repo:
 
 ```
-$ https://github.com/mahimavai2000/frontend-nanodegree-feedreader.git
+$ https://github.com/mahimavai2000/Neighborhood-Map.git
 ```
 or 
 **2.** Download the repository:
 Download the repository in your desktop, unzip it and open the "index.html" file in your browser to run this project.
+
 **3.** Change MyAPI into your API code in Google API script tag of index.html.
 
 # This project contains Neighborhood Map of New York City.

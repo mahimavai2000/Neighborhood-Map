@@ -3,6 +3,7 @@ html,body {
      height: 100%;
      margin: 0;
      padding: 0;
+
 }
  /*.container {
      height: 100%;
@@ -12,12 +13,16 @@ html,body {
      display: flex;
      min-height: 0 flex: 1 1 0px;*/
 }
- input {
+
+/* Input search text styles */
+input {
      font-size: 15px;
 }
  #inputTextID {
      padding-left: 20px;
 }
+
+/* Heading1,Unordered list styles */
  h1 {
      color: #F8F8FF;
      font-size: 30px;
@@ -30,50 +35,60 @@ html,body {
      padding: 10px 10px;
      background-color: #65a0ed;
 }
- ul, li {
+ul, li {
      display: block;
      list-style-type: decimal;
      border: 0;
      margin: 0;
      padding: 0;
 }
- li {
+li {
      list-style: none;
      display: list-item;
      text-align: -weblit-match-parent;
 }
- li:hover {
+li:hover {
      background-color: #e8e8e8;
 }
+
+/* List of locations style */
 .listPane {
      /*background-color: #fff;*/
      position: relative;
-     overflow: auto;
+     overflow-y: auto;    
      height: 100vh;
 }
+
+/* Cursor point to click the location name,image and description */
  .leftPane {
      cursor: pointer;
 }
+
+/* Solid lines between the list of location details */
  .listStyles{
      border-bottom: 1px solid;
      border-bottom-color: #dcdfe5;
      outline: none;
      outline-offset: -1px;
 }
+
+/* Space around the Location name,description and image */
  .listSpace{
      padding: 20px;
 }
- .listFlex {
+
+/* Display flexible space and font styles between Location name and description */
+.listFlex {
      display: flex;
 }
- .listLeftcontent {
+.listLeftcontent {
      display: inline-block;
      margin-right: 36px;
      vertical-align: top;
      width: 250px;
      flex: 1 0 0px;
 }
- .listFont {
+.listFont {
      align-self: center;
      font-size: 18px;
      font-weight: 400;
@@ -81,7 +96,9 @@ html,body {
      margin: 0;
      color: #4259f4;
 }
- p {
+
+/* Paragraph styles for location description */
+p {
      font-size: 14px;
      margin: 0;
      display: block;
@@ -92,27 +109,37 @@ html,body {
      padding-top: 10px;
      width: 100%;
 }
- .pStyles {
+.pStyles {
      line-height: 20px;
-    /*max-width: 80px;
-    */
+    /*max-width: 80px;*/
      overflow: hidden;
 }
- .imageStyles {
+
+/* Location image styles */
+.imageStyles {
      background: no-repeat center/cover;
      vertical-align: middle;
      min-height: 0;
      min-width: 0;
 }
-/*#map {
+
+/* Map styles*/
+#map {
      bottom:0;
      top:0;
      height:100vh;
+     width: 100%;
+     overflow-y: hidden;
+
+     
+     /*margin-top: -15px;
+     margin-bottom: -15px;
+     overflow: hidden;
      width:100%;
      position: absolute;
      left: 362px;     
-     right: 0px;
-}*/
+     right: 0px;*/
+}
 
  /*.rightPane {
      position: absolute;
@@ -120,6 +147,11 @@ html,body {
      width: 50%;
      margin: 0;
 }*/
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
  .mapArea {
      flex: 1 0;
      overflow: hidden;
@@ -138,7 +170,9 @@ html,body {
      height:100%;
      width:100%;
      position:absolute;
-} 
+}
+
+/* Panorama styles in Map */ 
  #pano {
      width: 200px;
      height: 200px;
